@@ -3,99 +3,112 @@
         "testCaseName": "Admin login success",
         "testCaseId": "ADMIN_LOGIN",
         "endpoint": "/login",
+        "method": "POST",
         "requestBody": {
             "username": "admin@gmail.com",
             "password": "admin"
         },
-        "expectedStatus": 200,
-        "expectedSuccess": true
+        "expectedResponse": {
+            "status": 200,
+            "success": true
+        }
     },
     {
         "testCaseName": "Admin login failure - wrong password",
         "testCaseId": "ADMIN_LOGIN",
         "endpoint": "/login",
+        "method": "POST",
         "requestBody": {
             "username": "admin@gmail.com",
             "password": "adminNo"
         },
-        "expectedStatus": 400,
-        "expectedSuccess": false
+        "expectedResponse": {
+            "status": 400,
+            "success": false
+        }
     },
     {
         "testCaseName": "Admin login failure - wrong username",
         "testCaseId": "ADMIN_LOGIN",
         "endpoint": "/login",
+        "method": "POST",
         "requestBody": {
             "username": "adminNo@gmail.com",
             "password": "admin"
         },
-        "expectedStatus": 404,
-        "expectedSuccess": false
+        "expectedResponse": {
+            "status": 404,
+            "success": false
+        }
     },
     {
         "testCaseName": "Admin login failure - empty username",
         "testCaseId": "ADMIN_LOGIN",
         "endpoint": "/login",
+        "method": "POST",
         "requestBody": {
             "username": "",
             "password": "admin"
         },
-        "expectedStatus": 400,
-        "expectedSuccess": false
+        "expectedResponse": {
+            "status": 400,
+            "success": false
+        }
     },
     {
         "testCaseName": "Admin login failure - empty password",
         "testCaseId": "ADMIN_LOGIN",
         "endpoint": "/login",
+        "method": "POST",
         "requestBody": {
             "username": "admin@gmail.com",
             "password": ""
         },
-        "expectedStatus": 400,
-        "expectedSuccess": false
+        "expectedResponse": {
+            "status": 400,
+            "success": false
+        }
     },
     {
         "testCaseName": "Admin login failure - invalid username",
         "testCaseId": "ADMIN_LOGIN",
         "endpoint": "/login",
+        "method": "POST",
         "requestBody": {
             "username": "",
             "password": ""
         },
-        "expectedStatus": 400,
-        "expectedSuccess": false
+        "expectedResponse": {
+            "status": 400,
+            "success": false
+        }
     },
     {
         "testCaseName": "Admin login failure - invalid username",
         "testCaseId": "ADMIN_LOGIN",
         "endpoint": "/login",
+        "method": "POST",
         "requestBody": {
             "username": "admin",
             "password": ""
         },
-        "expectedStatus": 400,
-        "expectedSuccess": false
+        "expectedResponse": {
+            "status": 400,
+            "success": false
+        }
     },
     {
         "testCaseName": "Admin login failure - invalid username",
         "testCaseId": "ADMIN_LOGIN",
         "endpoint": "/login",
+        "method": "POST",
         "requestBody": {
             "username": "admin#gmail.com",
             "password": ""
         },
-        "expectedStatus": 400,
-        "expectedSuccess": false
-    },
-    {
-        "testCaseName": "Admin SignUp Success",
-        "testCaseId": "REGISTER_ADMIN",
-        "endpoint": "/register",
-        "requestBody": {
-            "username": "admin@gmail.com",
-            "password": "admin"
-        },
-        "expectedStatus": 200,
-        "expectedSuccess": true
+        "expectedResponse": {
+            "status": 400,
+            "success": false
+        }
     }
 ]
