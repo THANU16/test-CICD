@@ -110,5 +110,19 @@
             "status": 400,
             "success": false
         }
+    },
+    {
+        "testCaseName": "Admin Register failure - username already exist",
+        "testCaseId": "ADMIN_Register",
+        "endpoint": "/register",
+        "method": "POST",
+        "requestBody": {
+            "username": "admin@gmail.com",
+            "password": "admin"
+        },
+        "expectedResponse": {
+            "status": 400,
+            "success": false
+        }
     }
 ]
