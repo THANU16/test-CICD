@@ -1,0 +1,58 @@
+[
+    {
+        "endpoint": "/login",
+        "username": "admin@gmail.com",
+        "password": "admin",
+        "expectedStatus": 200,
+        "expectedResult": true
+    },
+    {
+        "endpoint": "/login",
+        "username": "admin@gmail.com",
+        "password": "adminNo",
+        "expectedStatus": 400,
+        "expectedResult": false
+    },
+    {
+        "endpoint": "/login",
+        "username": "adminNo@gmail.com",
+        "password": "admin",
+        "expectedStatus": 404,
+        "expectedResult": false
+    },
+    {
+        "endpoint": "/login",
+        "username": "",
+        "password": "admin",
+        "expectedStatus": 400,
+        "expectedResult": false
+    },
+    {
+        "endpoint": "/login",
+        "username": "admin@gmail.com",
+        "password": "",
+        "expectedStatus": 400,
+        "expectedResult": false
+    },
+    {
+        "endpoint": "/login",
+        "username": "",
+        "password": "",
+        "expectedStatus": 400,
+        "expectedResult": false
+    },
+    {
+        "endpoint": "/login",
+        "username": "admin",
+        "password": "",
+        "expectedStatus": 400,
+        "expectedResult": false
+    },
+    {
+        "endpoint": "/login",
+        "username": "admin#gmail.com",
+        "password": "",
+        "expectedStatus": 400,
+        "expectedResult": false
+    }
+]

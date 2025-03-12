@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .heading1 {
+    @apply text-4xl sm:text-5xl text-gray-900 font-extrabold text-center;
+  }
+  .label {
+    @apply text-gray-600 text-lg;
+  }
+  .value {
+    @apply text-gray-900 text-lg font-semibold;
+  }
+  .ourWorkHeading {
+    @apply md:text-6xl text-[30px] text-text4 font-bold;
+  }
+  .footerlink {
+    @apply text-white hover:text-gray-400 text-base;
+  }
+  .custom-scroll {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  .custom-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  .custom2-scrollbar::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .custom2-scrollbar::-webkit-scrollbar-track {
+    background: rgb(241, 241, 241);
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    margin: 85px 0 20px 0;
+  }
+
+  .custom2-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(156, 156, 156);
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .custom2-scrollbar::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  a[href^="tel:"] {
+    text-decoration: none !important;
+    color: inherit;
+  }
+
+  .custom-dashed {
+    border: 2px dashed #15803d;
+    border-spacing: 24px;
+  }
+}
