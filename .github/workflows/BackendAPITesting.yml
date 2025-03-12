@@ -24,9 +24,9 @@ jobs:
           cd backend
           npm install
 
-      # Debug the environment Variables
-      - name: Debug Environment Variables
-        run: env | grep DB_CONNECTION_STRING
+      # # Debug the environment Variables
+      # - name: Debug Environment Variables
+      #   run: env | grep DB_CONNECTION_STRING
 
       # Set environment variables
       - name: Set environment variables
