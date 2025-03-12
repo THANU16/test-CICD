@@ -11,7 +11,8 @@
         "expectedResponse": {
             "status": 200,
             "success": true
-        }
+        },
+        "nextEndpoint": "/login"
     },
     {
         "testCaseName": "Admin login failure - wrong password",
@@ -25,7 +26,8 @@
         "expectedResponse": {
             "status": 400,
             "success": false
-        }
+        },
+        "nextEndpoint": "/login"
     },
     {
         "testCaseName": "Admin login failure - wrong username",
@@ -39,7 +41,8 @@
         "expectedResponse": {
             "status": 404,
             "success": false
-        }
+        },
+        "nextEndpoint": "/login"
     },
     {
         "testCaseName": "Admin login failure - empty username",
@@ -53,7 +56,8 @@
         "expectedResponse": {
             "status": 400,
             "success": false
-        }
+        },
+        "nextEndpoint": "/login"
     },
     {
         "testCaseName": "Admin login failure - empty password",
@@ -67,7 +71,8 @@
         "expectedResponse": {
             "status": 400,
             "success": false
-        }
+        },
+        "nextEndpoint": "/login"
     },
     {
         "testCaseName": "Admin login failure - invalid username",
@@ -81,7 +86,8 @@
         "expectedResponse": {
             "status": 400,
             "success": false
-        }
+        },
+        "nextEndpoint": "/login"
     },
     {
         "testCaseName": "Admin login failure - invalid username",
@@ -95,7 +101,8 @@
         "expectedResponse": {
             "status": 400,
             "success": false
-        }
+        },
+        "nextEndpoint": "/login"
     },
     {
         "testCaseName": "Admin login failure - invalid username",
@@ -109,7 +116,8 @@
         "expectedResponse": {
             "status": 400,
             "success": false
-        }
+        },
+        "nextEndpoint": "/register"
     },
     {
         "testCaseName": "Admin Register failure - username already exist",
@@ -123,6 +131,7 @@
         "expectedResponse": {
             "status": 400,
             "success": false
-        }
+        },
+        "nextEndpoint": ""
     }
 ]
