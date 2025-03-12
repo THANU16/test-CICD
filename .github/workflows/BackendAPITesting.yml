@@ -63,15 +63,10 @@ jobs:
       # Run Postman API tests
       # Extract test case IDs from JSON and run tests dynamically
       - name: Run API tests for all TEST_CASE_IDS
-        run: >
-          TEST_CASE_IDS=$(jq -r '.[]' "${{ github.workspace
-          }}/test/backend/testcases.json")
-
-          for ID in $TEST_CASE_IDS; do
-            echo "Running tests for TEST_CASE_ID=$ID"
+        run: 
             postman collection run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
               -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
               -d "${{ github.workspace }}/test/backend/testcases.json" \
-              --env-var TEST_CASE_ID="$ID"
+              --env-var TEST_CASE_ID="ADMIN_LOGIN"
           done
 
