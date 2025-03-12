@@ -25,12 +25,6 @@ jobs:
           cd backend
           npm install
       
-      # # Start backend server in the background
-      # - name: Start backend server
-      #   run: |
-      #     cd backend
-      #     nohup npm start > server.log 2>&1 &
-      
       # Start backend server in the background
       - name: Start backend server
         run: node server.js &
@@ -48,13 +42,13 @@ jobs:
       - name: Wait for server to start
         run: sleep 10 # Adjust based on how long your backend takes to start
 
-      # Debug File Path (List all files in workspace)
-      - name: Debug File Path
-        run: ls -R ${{ github.workspace }}/test/backend
+      # # Debug File Path (List all files in workspace)
+      # - name: Debug File Path
+      #   run: ls -R ${{ github.workspace }}/test/backend
 
       # Run Postman API tests
       - name: Run API tests
         run: |
           postman collection run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
             -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
-            -d "${{ github.workspace }}/test/backend/testcases.json"
+            -d "${{ github.workspace }}/test/backend/testcases.json" \
