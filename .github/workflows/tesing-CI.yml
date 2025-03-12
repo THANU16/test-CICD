@@ -1,0 +1,44 @@
+name: Automated API tests using Postman CLI
+
+on: push
+
+jobs:
+  automated-api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18 # Use the correct version for your project
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+      
+      # Start backend server in the background
+      - name: Start backend server
+        run: npm start &
+
+      # Install Postman CLI
+      - name: Install Postman CLI
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+
+      # Login to Postman CLI
+      - name: Login to Postman CLI
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+
+      # Wait for the server to be fully ready (optional)
+      - name: Wait for server to start
+        run: sleep 10 # Adjust based on how long your backend takes to start
+
+      # Run Postman API tests
+      - name: Run API tests
+        run: |
+          postman collection run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
+            -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
+            -d "${{ github.workspace }}/BeReload/test/backend/testcases.json"
