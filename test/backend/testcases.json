@@ -89,7 +89,7 @@
     },
     {
         "testCaseName": "Admin SignUp Success",
-        "testCaseId": "ADMIN_LOGIN",
+        "testCaseId": "REGISTER_ADMIN",
         "endpoint": "/register",
         "requestBody": {
             "username": "admin@gmail.com",
