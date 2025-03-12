@@ -27,7 +27,7 @@ jobs:
       
       # Start backend server in the background
       - name: Start backend server
-        run: node server.js &
+        run: node ${{ github.workspace }}/backend/server.js &
 
       # Install Postman CLI
       - name: Install Postman CLI
