@@ -33,7 +33,7 @@ jobs:
       
       # Start backend server in the background
       - name: Start backend server
-        run: npm start &
+        run: node server.js &
 
       # Install Postman CLI
       - name: Install Postman CLI
@@ -50,7 +50,7 @@ jobs:
 
       # Debug File Path (List all files in workspace)
       - name: Debug File Path
-        run: ls -R ${{ github.workspace }}
+        run: ls -R ${{ github.workspace }}/BeReload/test/backend
 
       # Run Postman API tests
       - name: Run API tests
