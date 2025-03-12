@@ -1,35 +1,66 @@
 [
-  {
-    "testName": "Successful Login",
-    "endpoint": "/login",
-    "method": "POST",
-    "body": {
-      "username": "admin@gmail.com",
-      "password": "admin"
+    {
+        "testCaseId" : "ADMIN_LOGIN",
+        "endpoint": "/login",
+        "username": "admin@gmail.com",
+        "password": "admin",
+        "expectedStatus": 200,
+        "expectedResult": true
     },
-    "expectedStatus": 200,
-    "expectedResponse": { "success": true }
-  },
-  {
-    "testName": "Invalid Password",
-    "endpoint": "/login",
-    "method": "POST",
-    "body": {
-      "username": "admin@gmail.com",
-      "password": "wrongpassword"
+    {
+        "testCaseId" : "ADMIN_LOGIN",
+        "endpoint": "/login",
+        "username": "admin@gmail.com",
+        "password": "adminNo",
+        "expectedStatus": 400,
+        "expectedResult": false
     },
-    "expectedStatus": 400,
-    "expectedResponse": { "success": false, "message": "Invalid credentials" }
-  },
-  {
-    "testName": "User Not Found",
-    "endpoint": "/login",
-    "method": "POST",
-    "body": {
-      "username": "unknown@gmail.com",
-      "password": "admin"
+    {
+        "testCaseId" : "ADMIN_LOGIN",
+        "endpoint": "/login",
+        "username": "adminNo@gmail.com",
+        "password": "admin",
+        "expectedStatus": 404,
+        "expectedResult": false
     },
-    "expectedStatus": 404,
-    "expectedResponse": { "success": false, "message": "User not found" }
-  }
+    {
+        "testCaseId" : "ADMIN_LOGIN",
+        "endpoint": "/login",
+        "username": "",
+        "password": "admin",
+        "expectedStatus": 400,
+        "expectedResult": false
+    },
+    {
+        "testCaseId" : "ADMIN_LOGIN",
+        "endpoint": "/login",
+        "username": "admin@gmail.com",
+        "password": "",
+        "expectedStatus": 400,
+        "expectedResult": false
+    },
+    {
+        "testCaseId" : "ADMIN_LOGIN",
+        "endpoint": "/login",
+        "username": "",
+        "password": "",
+        "expectedStatus": 400,
+        "expectedResult": false
+    },
+    {
+        "testCaseId" : "ADMIN_LOGIN",
+        "endpoint": "/login",
+        "username": "admin",
+        "password": "",
+        "expectedStatus": 400,
+        "expectedResult": false
+    },
+    {
+        "testCaseId" : "ADMIN_LOGIN",
+        "endpoint": "/login",
+        "username": "admin#gmail.com",
+        "password": "",
+        "expectedStatus": 400,
+        "expectedResult": false
+    }
 ]
