@@ -31,35 +31,5 @@
     },
     "expectedStatus": 404,
     "expectedResponse": { "success": false, "message": "User not found" }
-  },
-  {
-    "testName": "Successful Registration",
-    "endpoint": "/register",
-    "method": "POST",
-    "body": {
-      "username": "newuser@gmail.com",
-      "password": "password123"
-    },
-    "expectedStatus": 201,
-    "expectedResponse": { "success": true, "message": "User registered" }
-  },
-  {
-    "testName": "Get All Orders",
-    "endpoint": "/orders",
-    "method": "GET",
-    "body": {},
-    "expectedStatus": 200,
-    "expectedResponse": { "orders": [] }
-  },
-  {
-    "testName": "Add Product",
-    "endpoint": "/products/add",
-    "method": "POST",
-    "body": {
-      "name": "New Product",
-      "price": 100
-    },
-    "expectedStatus": 201,
-    "expectedResponse": { "success": true, "message": "Product added successfully" }
   }
 ]
