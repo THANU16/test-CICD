@@ -24,6 +24,10 @@ jobs:
           cd backend
           npm install
 
+      # Debug the environment Variables
+      - name: Debug Environment Variables
+        run: env | grep DB_CONNECTION_STRING
+
       # Set environment variables
       - name: Set environment variables
         run: >
@@ -44,6 +48,10 @@ jobs:
           $GITHUB_ENV
           echo "AWS_SES_EMAIL=${{ secrets.AWS_SES_EMAIL }}" >> $GITHUB_ENV
           echo "AWS_BUCKET_NAME=${{ secrets.AWS_BUCKET_NAME }}" >> $GITHUB_ENV
+
+      # Debug the environment Variables
+      - name: Debug Environment Variables
+        run: env | grep DB_CONNECTION_STRING
 
       # Start backend server in the background
       - name: Start backend server
