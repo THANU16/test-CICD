@@ -15,9 +15,21 @@ jobs:
         with:
           node-version: 18 # Use the correct version for your project
 
+     # Move to backend directory
+      - name: Change to backend directory
+        run: cd backend
+
       # Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd backend
+          npm install
+      
+      # Start backend server in the background
+      - name: Start backend server
+        run: |
+          cd backend
+          nohup npm start > server.log 2>&1 &
       
       # Start backend server in the background
       - name: Start backend server
