@@ -52,9 +52,9 @@ jobs:
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
 
-      # Install Newman
-      - name: Install Newman
-        run: npm install -g newman
+      # # Install Newman
+      # - name: Install Newman
+      #   run: npm install -g newman
 
       # Wait for the server to be fully ready (optional)
       - name: Wait for server to start
@@ -64,9 +64,10 @@ jobs:
       # Run Postman API tests
       - name: Run API tests
         run: |
-          newman run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
-            -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
-            --env-var "testCases=${{ github.workspace }}/test/backend/testcases.json"
-          # postman collection run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
+          # newman run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
           #   -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
-          #   -d "${{ github.workspace }}/test/backend/testcases.json"
+          #   --env-var "testCases=${{ github.workspace }}/test/backend/testcases.json"
+          postman collection run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
+            -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
+            # -d "${{ github.workspace }}/test/backend/testcases.json"
+            --env-var "testCases=${{ github.workspace }}/test/backend/testcases.json"
