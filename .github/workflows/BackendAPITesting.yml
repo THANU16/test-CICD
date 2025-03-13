@@ -1,31 +1,28 @@
-name: Automated API tests using Postman CLI
+name: Automated API Tests using Postman CLI
 
-on: push
+on: push  # Runs on every push, modify as needed
 
 jobs:
   automated-api-tests:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout Repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setup Node.js
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22 # Use the correct version for your project
+          node-version: 22  # Ensure this is compatible with your project
 
-      # Move to backend directory
-      - name: Change to backend directory
-        run: cd backend
-
-      # Install dependencies
+      # Step 3: Install Dependencies
       - name: Install dependencies
-        run: |
-          cd backend
-          npm install
+        working-directory: backend
+        run: npm install
 
-      # Set environment variables
+      # Step 4: Set Environment Variables
       - name: Set environment variables
         run: |
           echo "PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
@@ -40,43 +37,47 @@ jobs:
           echo "AWS_SES_EMAIL=${{ secrets.AWS_SES_EMAIL }}" >> $GITHUB_ENV
           echo "AWS_BUCKET_NAME=${{ secrets.AWS_BUCKET_NAME }}" >> $GITHUB_ENV
 
-      # Start backend server in the background
+      # Step 5: Start Backend Server in Background
       - name: Start backend server
-        run: node ${{ github.workspace }}/backend/server.js &
+        working-directory: backend
+        run: |
+          nohup node server.js > server.log 2>&1 &
 
-      # Install Postman CLI
+      # Step 6: Install Postman CLI
       - name: Install Postman CLI
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
 
-      # Login to Postman CLI
+      # Step 7: Login to Postman CLI
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
 
-      # Wait for the server to be fully ready (optional)
+      # Step 8: Wait for the Server to Start (Adjust Time if Needed)
       - name: Wait for server to start
-        run: sleep 10 # Adjust based on how long your backend takes to start
+        run: sleep 10  # Increase if needed
 
-      # # Set the testCases variable by reading the content of the file
-      # - name: Set testCases variable
-      #   run: |
-      #     # Read the content of the testcases.json file and escape special characters
-      #     testCases=$(cat ${{ github.workspace }}/test/backend/testcases.json | jq -sRr @uri)
-      #     echo "testCases=${testCases}" >> $GITHUB_ENV
-
+      # Step 9: Update Postman Environment with Test Cases
       - name: Update Postman Environment with Test Cases
         run: |
           ENV_FILE="test-env-updated.json"
-          curl -s -X GET "https://api.getpostman.com/environments/42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
-            -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" | jq ".environment.values += [{\"key\": \"testCases\", \"value\": \"$(jq -c . < ${{ github.workspace }}/test/backend/testcases.json)\", \"type\": \"default\"}]" > $ENV_FILE
 
+          # Fetch current Postman environment
+          curl -s -X GET "https://api.getpostman.com/environments/42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
+            -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" | \
+            jq --argjson testCases "$(jq -c . < ${{ github.workspace }}/test/backend/testcases.json | jq @json)" \
+            '.environment.values += [{"key": "testCases", "value": $testCases, "type": "default"}]' > $ENV_FILE
+
+          # Debugging: Print updated environment to logs
+          cat $ENV_FILE
+
+          # Upload updated environment to Postman
           curl -s -X PUT "https://api.getpostman.com/environments/42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
             -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d @"$ENV_FILE"
 
-      # Run Postman API tests
+      # Step 10: Run API Tests with Postman CLI
       - name: Run API tests
         run: |
           postman collection run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
-            -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" -r cli,json,html
+            -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" -r cli,json,HTML
