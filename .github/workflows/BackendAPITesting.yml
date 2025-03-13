@@ -70,3 +70,11 @@ jobs:
           postman collection run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
             -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
             --env-var "testCases=${{ env.testCases }}" -r cli,json,html
+
+            
+      # Upload Postman CLI reports as artifacts
+      - name: Upload Postman Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: postman-reports
+          path: postman-cli-reports/
