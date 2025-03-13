@@ -69,4 +69,4 @@ jobs:
         run: |
           postman collection run "42768841-3b6369d7-4a8d-48b3-8ba1-813b73d0765c" \
             -e "42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
-            --env-var "testCases=${{ env.testCases }}"
+            --env-var "testCases=${{ env.testCases }}" -r cli,json,html
