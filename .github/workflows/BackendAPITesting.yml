@@ -67,9 +67,6 @@ jobs:
             jq --argjson testCases "$(jq -c . < ${{ github.workspace }}/test/backend/testcases.json | jq @json)" \
             '.environment.values += [{"key": "testCases", "value": $testCases, "type": "default"}]' > $ENV_FILE
 
-          # Debugging: Print updated environment to logs
-          cat $ENV_FILE
-
           # Upload updated environment to Postman
           curl -s -X PUT "https://api.getpostman.com/environments/42768841-30686299-bc78-4b88-a224-6b2230eb2ab8" \
             -H "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
