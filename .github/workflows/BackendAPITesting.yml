@@ -13,7 +13,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22  # Use the correct version for your project
+          node-version: 22 # Use the correct version for your project
 
       # Move to backend directory
       - name: Change to backend directory
@@ -39,7 +39,7 @@ jobs:
           echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
           echo "AWS_SES_EMAIL=${{ secrets.AWS_SES_EMAIL }}" >> $GITHUB_ENV
           echo "AWS_BUCKET_NAME=${{ secrets.AWS_BUCKET_NAME }}" >> $GITHUB_ENV
-      
+
       # Start backend server in the background
       - name: Start backend server
         run: node ${{ github.workspace }}/backend/server.js &
@@ -61,7 +61,7 @@ jobs:
       # - name: Set testCases variable
       #   run: |
       #     # Read the content of the testcases.json file and escape special characters
-      #     testCases=$(cat ${{ github.workspace }}/test/backend/testcases.json | jq -sRr @uri)    
+      #     testCases=$(cat ${{ github.workspace }}/test/backend/testcases.json | jq -sRr @uri)
       #     echo "testCases=${testCases}" >> $GITHUB_ENV
 
       - name: Update Postman Environment with Test Cases
