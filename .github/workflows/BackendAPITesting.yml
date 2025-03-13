@@ -61,11 +61,7 @@ jobs:
       - name: Set testCases variable
         run: |
           # Read the content of the testcases.json file and escape special characters
-          testCases=$(cat ${{ github.workspace }}/test/backend/testcases.json | jq -sRr @uri)
-          
-          # Log the data to check its contents
-          echo "Test Cases Data: $testCases"
-          
+          testCases=$(cat ${{ github.workspace }}/test/backend/testcases.json | jq -sRr @uri)    
           echo "testCases=${testCases}" >> $GITHUB_ENV
 
       # Run Postman API tests
